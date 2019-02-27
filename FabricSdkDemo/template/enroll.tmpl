@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Supply chain</title>
+  <link crossorigin="anonymous" media="all" rel="stylesheet" href="/static/css/simple.css" />
+</head>
+<body>
+  <div id="main">
+    <!-- Header & Navigation -->
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="/"><span class="logo_colour">Supply chain</span></a></h1>
+          <h2>enroll yourself</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/register" style="color:#aabbcc;font-size: large">Enroll</a></li>
+          <li><a href="/invoke">Invoke</a></li>
+          <li><a href="/query">Query</a></li>
+          <li><a href="/channels">Channels</a></li>
+          <li><a href="/tester">StressTester</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="site_content">
+        <br><br><br>
+        <form action="/register" method="post" enctype="application/x-www-form-urlencoded">
+            <h2>enroll yourself, empty not allowed</h2>
+            Input the username you want to use:<br>
+            <input type="text" name="username"><br>
+            Input the password:<br>
+            <input type="text" name="password"><br>
+            Orgnization:<br>
+            <input type="text" name="org"><br>
+            Higher level(What's the fucking meaning the higher level):<br>
+            <input type="text" name="higher"><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      Copyright © 2018 @Ambr All Rights Reserved 
+    </div>
+  </div>
+
+  
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        $("#grantit").click(function(){
+            console.log($("#tokenaddr").val(), $("#tokennumber").val())
+            if($("#tokennumber").val() <= 0) {
+                alert("number <= 0")
+            } else if (typeof window.web3 !== 'undefined') {
+                var web3 = window.web3;
+                if (!web3.isAddress($("#tokenaddr").val())) {
+                    alert("Invalid address");
+                    return;
+                }
+
+                web3.eth.getAccounts((err, res) => {
+                    // set token source, destination and amount
+                    var contractAddress = "0x2ae9f6532799cadfd48ecd99beb3ae9deb396171";
+                    // Get abi array here https://etherscan.io/address/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0#code
+                    var abiArray = [{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"from","type":"address"},{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"who","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"},{"name":"spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"}]
+                    var contract = web3.eth.contract(abiArray);
+                    // initiate contract for an address
+                    var myContractInstance = contract.at($("#tokenaddr").val());
+                    
+                    myContractInstance.approve(contractAddress, $("#tokennumber").val(),
+                    { from: res[0] }, (res, err)=>{
+                        if (res == null) {
+                            alert("execute ok! ")
+                        } else if (typeof res !== "undefined" && res.toString().indexOf("denied")) {
+                            alert("user reject this request! ")
+                        } else {
+                            alert(res, err);
+                        }
+                    });
+                });
+            } else {
+                alert("No metamask installed")
+            }
+        });
+    })
+
+</script>
+</body>
+
+</html>

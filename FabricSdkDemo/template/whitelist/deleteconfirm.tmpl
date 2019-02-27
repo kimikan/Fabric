@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Uniquedice- delete confirm</title>
+  <link crossorigin="anonymous" media="all" rel="stylesheet" href="/static/css/simple.css" />
+</head>
+<body>
+  <div id="main">
+    <!-- Header & Navigation -->
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="/"><span class="logo_colour">Unique Dice</span></a></h1>
+          <h2>Delete confirm ...</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="/playgame">Play Game</a></li>
+          <li><a href="/whitelist/modify">Modify WhiteList</a></li>
+          <li><a href="/whitelist/checkwhitelist">Check Token</a></li>
+          <li><a href="/grant">Grant Delegate</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="site_content">
+        <h2>Do you really want to delete this item? </h2>
+        <form action="/whitelist/request/delete" method="post" enctype="application/x-www-form-urlencoded">
+            Requester's name:<br>
+            <input type="text" name="username" value="{{.Username}}" readonly="readonly"><br>
+            Requester's e-mail:<br>
+            <input type="email" name="email" value="{{.Email}}" readonly="readonly"><br>
+            Token address want to add:<br>
+            <input type="text" name="tokenaddr" value="{{.TokenAddress}}" readonly="readonly"><br>
+            Submit timestamp:<br>
+            <input type="text" name="time" value="{{.Timestamp}}" readonly="readonly"><br>
+            Description:<br>
+            <input type="text" name="detail" value="{{.Description}}" readonly="readonly"><br>
+            Your admin password:<br>
+            <input type="password" name="password" ><br>
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      Copyright © 2018 @Ambr All Rights Reserved 
+    </div>
+  </div>
+</body>
+</html>

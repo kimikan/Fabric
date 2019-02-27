@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Supply chain</title>
+  <link crossorigin="anonymous" media="all" rel="stylesheet" href="/static/css/simple.css" />
+</head>
+<body>
+  <div id="main">
+    <!-- Header & Navigation -->
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="/"><span class="logo_colour">Supply chain</span></a></h1>
+          <h2>about</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="/" >Home</a></li>
+          <li><a href="/register">Enroll</a></li>
+          <li><a href="/invoke">Invoke</a></li>
+          <li><a href="/query">Query</a></li>
+          <li><a href="/channels">Channels</a></li>
+          <li><a href="/tester">StressTester</a></li>
+          <li><a href="/about"  style="color:#aabbcc;font-size: large">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="site_content">
+        <h2>{{ .Subject}}</h2>
+        <p>{{ .Detail}}</p>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      Copyright © 2018 @Ambr All Rights Reserved 
+    </div>
+  </div>
+</body>
+</html>

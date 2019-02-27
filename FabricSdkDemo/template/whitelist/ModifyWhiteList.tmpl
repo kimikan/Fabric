@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Uniquedice- modify whitelist</title>
+  <link crossorigin="anonymous" media="all" rel="stylesheet" href="/static/css/simple.css" />
+</head>
+<body>
+
+  <div id="main">
+    <!-- Header & Navigation -->
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="/"><span class="logo_colour">Unique Dice</span></a></h1>
+          <h2> Modify whitelist add or remove inputed token...</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="/playgame">Play Game</a></li>
+          <li><a href="/whitelist/modify" style="color:#aabbcc;font-size: large">Modify WhiteList</a></li>
+          <li><a href="/whitelist/checkwhitelist">Check Token</a></li>
+          <li><a href="/grant">Grant Delegate</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="site_content">
+        <h2>Submit your adding token request:</h2>
+        <form action="/whitelist/request" method="post" enctype="application/x-www-form-urlencoded">
+            Input your name:<br>
+            <input type="text" name="username"><br>
+            Input you contact e-mail:<br>
+            <input type="email" name="email"><br>
+            Input the token address you want to add:<br>
+            <input type="text" name="tokenaddr"><br>
+            Input any other you want to tell:<br>
+            <input type="text" name="detail"><br>
+            <input type="submit" value="Submit">
+        </form>
+        <br><br><br>
+
+        <h2>Do you have uniquedice admin key:</h2>
+            <h3>Approve request</h3>
+            <a href="/whitelist/approverequest">click here to approve request</a><br><br><br>
+        <h2>Do you have uniquedice contract owner private key:</h2>
+        <form action="/whitelist/modify" method="post" enctype="application/x-www-form-urlencoded">
+            <h3>Add token into whiltelist</h3>
+            Input the token address you want to add:<br>
+            <input type="text" name="tokenaddr"><br>
+            Input your private key:<br>
+            <input type="text" name="privatekey"><br>
+            <input type="hidden" id="custId" name="flag" value="">
+            <input type="submit" value="Add to whitelist">
+        </form>
+        <br>
+        <form action="/whitelist/modify" method="post" enctype="application/x-www-form-urlencoded">
+            <h3>Remove token from whiltelist</h3>
+            Input the token address you want to remove:<br>
+            <input type="text" name="tokenaddr"><br>
+            Input your private key:<br>
+            <input type="text" name="privatekey"><br>
+            <input type="hidden" id="custId" name="flag" value="3487">
+            <input type="submit" value="Remove from whitelist">
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      Copyright © 2018 @Ambr All Rights Reserved 
+    </div>
+  </div>
+</body>
+</html>
